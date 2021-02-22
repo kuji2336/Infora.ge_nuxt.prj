@@ -1,0 +1,56 @@
+[
+  {
+    "name": "admin",
+    "path": "/admin",
+    "component": "/home/quji/infora.ge/pages/admin/index.vue",
+    "chunkName": "pages/admin/index"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/home/quji/infora.ge/pages/login/index.vue",
+    "chunkName": "pages/login/index"
+  },
+  {
+    "name": "posts",
+    "path": "/posts",
+    "component": "/home/quji/infora.ge/pages/posts/index.vue",
+    "chunkName": "pages/posts/index"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/home/quji/infora.ge/pages/register/index.vue",
+    "chunkName": "pages/register/index"
+  },
+  {
+    "name": "reset",
+    "path": "/reset",
+    "component": "/home/quji/infora.ge/pages/reset/index.vue",
+    "chunkName": "pages/reset/index"
+  },
+  {
+    "name": "admin-posts",
+    "path": "/admin/posts",
+    "component": "/home/quji/infora.ge/pages/admin/posts/index.vue",
+    "chunkName": "pages/admin/posts/index"
+  },
+  {
+    "name": "admin-posts-politics",
+    "path": "/admin/posts/politics",
+    "component": "/home/quji/infora.ge/pages/admin/posts/politics/index.vue",
+    "chunkName": "pages/admin/posts/politics/index"
+  },
+  {
+    "name": "posts-id",
+    "path": "/posts/:id",
+    "component": "/home/quji/infora.ge/pages/posts/_id/index.vue",
+    "chunkName": "pages/posts/_id/index"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/quji/infora.ge/pages/index.vue",
+    "chunkName": "pages/index"
+  }
+]

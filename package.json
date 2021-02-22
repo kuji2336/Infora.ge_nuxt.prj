@@ -1,0 +1,25 @@
+{
+  "name": "infora.ge",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.8.3",
+    "fibers": "^5.0.0",
+    "firebase": "^8.2.7",
+    "firebase-tools": "^9.4.0",
+    "node-sass": "^5.0.0",
+    "nuxt": "^2.14.12",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
+    "vue-lazy-hydration": "^2.0.0-beta.4"
+  },
+  "devDependencies": {}
+}
