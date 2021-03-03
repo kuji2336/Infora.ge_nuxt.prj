@@ -1,7 +1,9 @@
 <template>
  <aside>
    <div class="column">
+     <p class="min-header">იქნებ დაგაინტერესოს</p>
    <div class="box-wrapper-main col-lg-12 col-xl-12 col-md-12 col-12" v-for="(post, index) in getFiltred" :key="index">
+  <nuxt-link :to="{path:`/posts/news-detail/${post.newsId}`, query: { category: post.news[0].selected }}">
     <div
       class="main-box__inner"
       v-for="singlePost in post.news"
@@ -39,6 +41,7 @@
         </div>
       </div>
      </div>
+  </nuxt-link>
    </div>
    </div>
  </aside>
@@ -83,7 +86,6 @@ computed: {
     position: absolute;
     top: 0;
     right: 0px;
-    font-family: 'firagoregular';
     background-color: #ffffff;
     padding: 1px 3px;
     font-size: 13px;
@@ -92,7 +94,6 @@ computed: {
 }
 
 .card-text {
-  font-family: "firagolight";
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -105,7 +106,6 @@ computed: {
 .card-body {
   padding: 10px 10px;
   h1 {
-    font-family: "firagoregular";
     font-size: 16px;
     white-space: normal;
     overflow: hidden;
@@ -164,7 +164,6 @@ computed: {
 
 .publication-hour{
   p{
-    font-family: "firagoregular";
     font-size: 14px;
   }
 }
@@ -175,6 +174,15 @@ computed: {
   p:first-child{
     border-bottom: 2px solid #ffc107;
   }
+}
+
+.min-header{
+    display: flex;
+    justify-content: center;
+    padding: 17px;
+    font-size: 20px;
+    font-family: 'rioni-bpg';
+    border-bottom: 5px solid #ffc107;
 }
 
 </style>

@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div class="display-block">
     <div class="header header-costum-styles text-center mb-4">
       <div id="v-model-select" class="demo">
@@ -11,14 +12,15 @@
           <option>main-slider</option>
           <option>politics</option>
           <option>world-news</option>
-          <option>sport</option>
+          <option>zodiac</option>
           <option>art</option>
+          <option>all</option>
         </select>
         <span>არჩეული კატეგორია: {{ selected }}</span>
       </div>
     </div>
     <input placeholder="სათაური, მოკლე აღწერით" v-model="title" />
-    <input placeholder="previewtext" v-model="previewText" />
+    <input placeholder="მოკლე აღწერა" v-model="descr" />
     <div class="upload-photo">
       <div class="upladimage">
         <button @click="click1" class="choose-photo">აირჩიე სურათი</button>
@@ -39,22 +41,31 @@
         </div>
       </div>
     </div>
+    <h1 class="display-1">Rich-Text editor integration By Anamol Soman</h1>
+   <Editor v-model="previewText"/>
+   <div v-html="previewText"></div>
     <div class="send-psot-final">
         <button @click="onSave">send post</button>
     </div>
   </div>
+</v-app>
 </template>
 
 <script>
 import { storage } from "/plugins/firebase.js";
 import { db } from "/plugins/firebase.js";
+import Editor from "@/components/Editor"
 export default {
-  components: {},
+  components: {
+    Editor
+  },
   data() {
     return {
+      previewText: "",
       selected: "",
       img1: "",
       title: "",
+      descr:"",
       previewText: "",
       imgUrl: "",
       published_at: new Date().toLocaleDateString(),
@@ -70,8 +81,10 @@ export default {
         .set({
           News: [
             {
+              selected:this.selected,
               title: this.title,
               previewText: this.previewText,
+              descr:this.descr,
               imgUrl: this.img1,
               published_at: this.published_at,
               date:this.date,
@@ -176,7 +189,6 @@ export default {
   border: 1px solid grey;
   background-color: cadetblue;
   color: #ffffff;
-  font-family: "firagolight";
 }
 
 .select-costum-styles {

@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "rioni-bpg";
+    src: url(~/assets/fonts/bpg-rioni-contrast-webfont.ttf);
+  }
+
+@font-face {
+    font-family: "mtavruli";
+    src: url(~/assets/fonts/bpg-nateli-mtavruli-webfont.ttf);
+  }
+
+  a{
+    color: #000000;
+    text-decoration: none;
+  }
+
+
+
+  @media(max-width:768){
+    body,html{
+      overflow-x: hidden !important;
+    }
+  }
+
+
+
+  .carousel-caption {
+    position: absolute; 
+    right: unset ; 
+    bottom: unset ; 
+   left: unset ;
+    z-index: unset ;
+   padding-top: unset ;
+   padding-bottom: unset ;
+   background-color: black;
+   color: #ffffff;
+   bottom: 0;
+   text-align: unset;
+   font-family: "mtavruli";
+}

@@ -15,8 +15,12 @@ import { createStore } from './store.js'
 
 import nuxt_plugin_plugin_5b32647e from 'nuxt_plugin_plugin_5b32647e' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_bootstrapvue_55e5e6c3 from 'nuxt_plugin_bootstrapvue_55e5e6c3' // Source: ./bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_plugin_5dfd6030 from 'nuxt_plugin_plugin_5dfd6030' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_vlazyload_54ca3a82 from 'nuxt_plugin_vlazyload_54ca3a82' // Source: ./v-lazy-load.js (mode: 'all')
+import nuxt_plugin_googleanalytics_6a409712 from 'nuxt_plugin_googleanalytics_6a409712' // Source: ./google-analytics.js (mode: 'client')
 import nuxt_plugin_firebase_34d6f55a from 'nuxt_plugin_firebase_34d6f55a' // Source: ../plugins/firebase.js (mode: 'all')
 import nuxt_plugin_checkAuth_38442f9d from 'nuxt_plugin_checkAuth_38442f9d' // Source: ../plugins/checkAuth.js (mode: 'all')
+import nuxt_plugin_TiptapVuetify_5e6e5270 from 'nuxt_plugin_TiptapVuetify_5e6e5270' // Source: ../plugins/TiptapVuetify (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -80,7 +84,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"infora.ge","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"საინფორმაციო პორტალი - ექსკლუზივი, პოლიტიკა, ეკონომიკა, ხელოვნება, მედიცინა, კრიმინალი, სპორტი"},{"name":"keywords","content":"ექსკლუზივი, პოლიტიკა, ეკონომიკა, შოუ-ბიზნესი, მედიცინა, კრიმინალი, სპორტი"},{"hid":"description","name":"description","content":"infora.ge"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+    head: {"title":"infora.media","htmlAttrs":{"lang":"ka"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"საინფორმაციო  პორტალი - ექსკლუზივი, პოლიტიკა, ეკონომიკა, ხელოვნება, მედიცინა, კრიმინალი, სპორტი, ახალმი ამბები დღეს,"},{"name":"keywords","content":"ექსკლუზივი, ინფორა.ჯი პოლიტიკა, ეკონომიკა, შოუ-ბიზნესი, მედიცინა, კრიმინალი, ხელოვნება და კულტურა, სპორტი, ინფორა საქართველო"},{"hid":"description","name":"description","content":"ექსკლუზიური ამბები, ახალი ამბები, ნიუსი, "}],"link":[{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     store,
     router,
@@ -217,12 +221,28 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_bootstrapvue_55e5e6c3(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_plugin_5dfd6030 === 'function') {
+    await nuxt_plugin_plugin_5dfd6030(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_vlazyload_54ca3a82 === 'function') {
+    await nuxt_plugin_vlazyload_54ca3a82(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_googleanalytics_6a409712 === 'function') {
+    await nuxt_plugin_googleanalytics_6a409712(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_firebase_34d6f55a === 'function') {
     await nuxt_plugin_firebase_34d6f55a(app.context, inject)
   }
 
   if (typeof nuxt_plugin_checkAuth_38442f9d === 'function') {
     await nuxt_plugin_checkAuth_38442f9d(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_TiptapVuetify_5e6e5270 === 'function') {
+    await nuxt_plugin_TiptapVuetify_5e6e5270(app.context, inject)
   }
 
   // Lock enablePreview in context

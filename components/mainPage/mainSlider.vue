@@ -10,10 +10,8 @@
       v-model="slide"
       :interval="0"
       controls
-      background="#ababab"
       img-width="1024"
       img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
@@ -23,9 +21,9 @@
         <b-carousel-slide :img-src="singleNews.imgUrl" :alt="singleNews.title" :title="singleNews.title">
           <div class="wrapper">
             <div class="wrapper__inner">
-              <h2 class="main-slider-text">
+              <p class="main-slider-text">
                 {{singleNews.title}}
-               </h2>
+               </p>
             </div>
           </div>
           <div class="pub-time">
@@ -92,13 +90,16 @@
 }
 
 .main-slider-text{
-  font-family: "firagomedium";
   font-size: 25px;
   line-height: 30px;
+  padding: 14px;
 }
 
 .wrapper__inner{
   border-bottom: 5px solid #ffc107;
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .slider-wrapper{
@@ -106,8 +107,28 @@
 }
 
 .pub-time{
-  margin-top: 15px;
-  font-family: firagoregular;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+
+}
+
+@media(max-width: 768px){
+  .carousel-item{
+    height: 250px;
+}
+
+.main-slider-text{
+    font-size: 13px;
+    padding: 10px;
+    line-height: 15px;
+}
+
+.carousel-caption {
+    bottom: -56px;
+    background-color: black;
+    padding: 10px;
+}
 }
 
 </style>

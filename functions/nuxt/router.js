@@ -11,7 +11,8 @@ const _294f0e9e = () => interopDefault(import('../pages/register/index.vue' /* w
 const _7696090a = () => interopDefault(import('../pages/reset/index.vue' /* webpackChunkName: "pages/reset/index" */))
 const _64f64bce = () => interopDefault(import('../pages/admin/posts/index.vue' /* webpackChunkName: "pages/admin/posts/index" */))
 const _08bcb458 = () => interopDefault(import('../pages/admin/posts/politics/index.vue' /* webpackChunkName: "pages/admin/posts/politics/index" */))
-const _21de3679 = () => interopDefault(import('../pages/posts/_id/index.vue' /* webpackChunkName: "pages/posts/_id/index" */))
+const _732cafcb = () => interopDefault(import('../pages/posts/category-page/_category/index.vue' /* webpackChunkName: "pages/posts/category-page/_category/index" */))
+const _4474ec16 = () => interopDefault(import('../pages/posts/news-detail/_id/index.vue' /* webpackChunkName: "pages/posts/news-detail/_id/index" */))
 const _65e145ca = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -54,9 +55,13 @@ export const routerOptions = {
     component: _08bcb458,
     name: "admin-posts-politics"
   }, {
-    path: "/posts/:id",
-    component: _21de3679,
-    name: "posts-id"
+    path: "/posts/category-page/:category",
+    component: _732cafcb,
+    name: "posts-category-page-category"
+  }, {
+    path: "/posts/news-detail/:id",
+    component: _4474ec16,
+    name: "posts-news-detail-id"
   }, {
     path: "/",
     component: _65e145ca,

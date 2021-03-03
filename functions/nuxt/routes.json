@@ -42,10 +42,16 @@
     "chunkName": "pages/admin/posts/politics/index"
   },
   {
-    "name": "posts-id",
-    "path": "/posts/:id",
-    "component": "/home/quji/infora.ge/pages/posts/_id/index.vue",
-    "chunkName": "pages/posts/_id/index"
+    "name": "posts-category-page-category",
+    "path": "/posts/category-page/:category",
+    "component": "/home/quji/infora.ge/pages/posts/category-page/_category/index.vue",
+    "chunkName": "pages/posts/category-page/_category/index"
+  },
+  {
+    "name": "posts-news-detail-id",
+    "path": "/posts/news-detail/:id",
+    "component": "/home/quji/infora.ge/pages/posts/news-detail/_id/index.vue",
+    "chunkName": "pages/posts/news-detail/_id/index"
   },
   {
     "name": "index",

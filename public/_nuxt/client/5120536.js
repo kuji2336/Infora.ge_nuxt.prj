@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{311:function(n,t,e){"use strict";e.r(t);var l=e(51),component=Object(l.a)({},(function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",[e("h1",[n._v("admin area")]),n._v(" "),e("nuxt-link",{attrs:{to:"/admin/posts/politics"}},[n._v("პოლიტიკა")])],1)}),[],!1,null,null,null);t.default=component.exports}}]);

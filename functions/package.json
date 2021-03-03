@@ -13,7 +13,6 @@
   },
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
     "fibers": "^5.0.0",
@@ -22,13 +21,19 @@
     "firebase-functions": "^3.11.0",
     "firebase-tools": "^9.4.0",
     "node-sass": "^5.0.0",
-    "nuxt-start": "^2.15.1",
+    "nuxt-lazy-load": "^1.2.5",
+    "nuxt-start": "^2.15.2",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
+    "swiper": "^5.4.5",
+    "tiptap-vuetify": "^2.24.0",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-lazy-hydration": "^2.0.0-beta.4"
   },
   "devDependencies": {
-    "firebase-functions-test": "^0.2.0"
+    "firebase-functions-test": "^0.2.0",
+    "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/vuetify": "^1.11.3"
   },
   "private": true
 }

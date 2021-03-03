@@ -1,6 +1,7 @@
 <template>
 <div class="row">
-   <div class="box-wrapper-main col-lg-4 col-xl-4 col-md-6 col-12" v-for="(post, index) in getFiltred":key="index">
+   <div class="box-wrapper-main col-lg-4 col-xl-4 col-md-6 col-12" v-for="(post, index) in getFiltred" :key="index">
+    <nuxt-link :to="{path:`/posts/news-detail/${post.newsId}`, query: { category: post.news[0].selected }}">
     <div
       class="main-box__inner"
       v-for="singlePost in post.news"
@@ -13,31 +14,32 @@
             :src="singlePost.imgUrl"
             :alt="singlePost.title"
             :title="singlePost.title"
+            
+            width="640" height="360"
           />
           <div class="publication-date">
              <p>{{singlePost.published_at}}</p>
           </div>
         </div>
         <div class="card-body">
-          <h1 class="card-title">{{ singlePost.title }}</h1>
+          <p class="card-title">{{ singlePost.title }}</p>
           <div class="text-wrapper">
-            <p class="card-text">
-              {{ singlePost.previewText }}
-            </p>
+            <p class="card-text" v-html="singlePost.descr"></p>
           </div>
           <div class="publication-hour d-flex align-items-center">
             <div class="publication-hr__inner d-flex align-items-center">
-               <p><img src="~assets/img/clock-regular.svg" alt="clock" width="20" height="20"></p>
+               <p><img  src="~assets/img/clock-regular.svg" alt="clock" width="20" height="20"></p>
                <p class="ml-2 mt-1">{{singlePost.date}}</p>
             </div>
             <div class="see-more-btn d-flex align-items-center justify-content-end">
               <p class="mr-2 mt-1">წაიკითხე</p>
-              <p><img src="~assets/img/arrow-right.svg" alt="see-more" width="20" height="20"></p>
+              <p><img data-not-lazy src="~assets/img/arrow-right.svg" alt="see-more" width="20" height="20"></p>
             </div>
           </div>
         </div>
       </div>
      </div>
+    </nuxt-link>
    </div>
   </div>
 </template>
@@ -62,15 +64,19 @@ export default {
 
 computed: {
   /* sort main news data  by publication date*/
+ 
   getFiltred(){
-     return this.loadedPosts.sort((a,b) => b.news[0].date.localeCompare(a.news[0].date))
+     return this.loadedPosts.sort((a,b) => b.news[0].published_at.localeCompare(a.news[0].published_at))
     } 
+ 
   },
 }
 </script>
 
 
-<style lang="scss" scoped>
+
+
+<style lang="scss" >
 
 .box-wrapper-main{
   margin-top: 35px;
@@ -81,7 +87,6 @@ computed: {
     position: absolute;
     top: 0;
     right: 0px;
-    font-family: 'firagoregular';
     background-color: #ffffff;
     padding: 1px 3px;
     font-size: 13px;
@@ -90,7 +95,6 @@ computed: {
 }
 
 .card-text {
-  font-family: "firagolight";
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -98,13 +102,16 @@ computed: {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   line-height: 24px;
+  font-family: 'mtavruli';
 }
+
+
 
 .card-body {
   padding: 20px 10px;
-  h1 {
-    font-family: "firagoregular";
+  .card-title {
     font-size: 18px;
+    font-family: "rioni-bpg";
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -158,7 +165,6 @@ computed: {
 
 .publication-hour{
   p{
-    font-family: "firagoregular";
     font-size: 14px;
   }
 }
@@ -168,6 +174,7 @@ computed: {
   font-size: 14px;
   p:first-child{
     border-bottom: 2px solid #ffc107;
+    font-family: "mtavruli";
   }
 }
 

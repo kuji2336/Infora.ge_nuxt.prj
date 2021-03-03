@@ -91,17 +91,7 @@ export default {
   cursor: pointer;
 }
 
-.button-register{
-    font-family: "firagolight";
-}
 
-.social-signin span{
-  font-family: "firagolight";
-}
-
-.system-reg{
-  font-family: "firagoregular";
-}
 
 #login-box {
   position: relative;

@@ -1,9 +1,12 @@
 {
+  "Editor": {
+    "description": "Auto imported from components/Editor.vue"
+  },
   "ConfirmEmail": {
     "description": "Auto imported from components/confirmEmail.vue"
   },
-  "NavifationTheHeader": {
-    "description": "Auto imported from components/Navifation/TheHeader.vue"
+  "NavigationTheHeader": {
+    "description": "Auto imported from components/Navigation/TheHeader.vue"
   },
   "MainPageAsideContent": {
     "description": "Auto imported from components/mainPage/asideContent.vue"
@@ -13,5 +16,11 @@
   },
   "MainSlider": {
     "description": "Auto imported from components/mainPage/mainSlider.vue"
+  },
+  "MainPageNewsSliderCont": {
+    "description": "Auto imported from components/mainPage/newsSliderCont.vue"
+  },
+  "SlotsNewsContainer": {
+    "description": "Auto imported from components/slots/newsContainer.vue"
   }
 }

@@ -6,8 +6,11 @@ You can directly use them in pages and other components without the need to impo
 
 **Tip:** If a component is conditionally rendered with `v-if` and is big, it is better to use `Lazy` or `lazy-` prefix to lazy load.
 
+- `<Editor>` | `<editor>` (components/Editor.vue)
 - `<ConfirmEmail>` | `<confirm-email>` (components/confirmEmail.vue)
-- `<NavifationTheHeader>` | `<navifation-the-header>` (components/Navifation/TheHeader.vue)
+- `<NavigationTheHeader>` | `<navigation-the-header>` (components/Navigation/TheHeader.vue)
 - `<MainPageAsideContent>` | `<main-page-aside-content>` (components/mainPage/asideContent.vue)
 - `<MainContent>` | `<main-content>` (components/mainPage/mainContent.vue)
 - `<MainSlider>` | `<main-slider>` (components/mainPage/mainSlider.vue)
+- `<MainPageNewsSliderCont>` | `<main-page-news-slider-cont>` (components/mainPage/newsSliderCont.vue)
+- `<SlotsNewsContainer>` | `<slots-news-container>` (components/slots/newsContainer.vue)
