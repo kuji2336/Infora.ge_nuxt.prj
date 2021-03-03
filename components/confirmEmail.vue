@@ -2,7 +2,7 @@
   <div>
     <div>
       <b-modal id="modal-1" title="BootstrapVue">
-        <p class="my-4">ემაილ ვერიფიკაცია, ვერიფიკაციის ლინკი გამოიგზავნება{{GetUserEmail}}</p>
+        <p class="my-4">ემაილ ვერიფიკაცია, ვერიფიკაციის ლინკი გამოიგზავნება{{GetUserEmail}} გთხოვთ გალინკოთ</p>
       </b-modal>
     </div>
   </div>
