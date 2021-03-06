@@ -1,26 +1,45 @@
 <template>
-  <div id="login-box">
-    <div class="left">
-      <h1 class="system-reg">შესვლა</h1>
-      <input type="text" name="email" placeholder="E-mail" v-model="LoginEmail" />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        v-model="Loginpassword"
-      />
-      <button class="button-register" @click="signIn">შესვლა</button>
+<div class="wrap">
+    <div class="form">
+    <div class="image-wrapper">
+      <div class="image__inner">
+        <h1>ავტორიზაცია</h1>
+      </div>
+     </div>
+      <form  @submit.prevent="signIn">
+        <div class="form-area">
+          <div class="form-list">
+            <label for="form-email" class="form-label">ფოსტა:</label>
+            <input
+              type="email"
+              required="required"
+              placeholder="შეიყვანეთ ელ.ფოსტა"
+              class="form-input"
+              v-model="LoginEmail"
+            />
+            <div class="form-background"></div>
+          </div>
+          <div class="form-list">
+            <label for="form-email" class="form-label">პაროლი:</label>
+            <input
+              type="password"
+              required="required"
+              placeholder="შეიყვანეთ პაროლი"
+              class="form-input"
+              v-model="Loginpassword"
+            />
+            <div class="form-background"></div>
+          </div>
+          <div class="feedback" v-if="errorCodes != ''">
+             <p>{{errorCodes}}</p>
+          </div>
+        </div>
+        <input type="submit" class="form-button" value="შესვლა" />
+      </form>
+      <div class="reset-password">
+          <nuxt-link to="/reset">პაროლის აღდგენა</nuxt-link>
+      </div>
     </div>
-    <div class="right">
-      <button class="social-signin facebook">
-        <span>შედი Facebook ექაუნთით</span>
-      </button>
-      <button class="social-signin google">
-        <span>შედი Google ექაუნთით</span>
-      </button>
-      <p><nuxt-link to="/reset">დაგავიწყდა პაროლი?</nuxt-link></p>
-    </div>
-    <div class="or">ან</div>
   </div>
 </template>
 
@@ -48,12 +67,16 @@ export default {
         })
         .catch((error) => {
           var errorCode = error.code;
-          console.log(errorCode)
           if(errorCode === "auth/wrong-password"){
-            this.errorCodes = "პაროლი არასწორია"
+           this.errorCodes = "არასწორი პაროლი"
+
           }
           if(errorCode === "auth/user-not-found"){
-            this.errorCodes = "მომხმარებელი ვერ მოიძებნა"
+           this.errorCodes = "მომხმარებელი ვერ მოიძებნა"
+          }
+
+          if(errorCode === "auth/too-many-requests"){
+            this.errorCodes = "წარმოიშვა შეცდომა"
           }
         });
     },
@@ -61,159 +84,289 @@ export default {
 };
 </script>
 
-<style scoped>
-*:focus {
-  outline: none;
+<style lang="scss" scoped>
+.feedback{
+  display: flex;
+    justify-content: center;
+    margin-top: 42px;
+    color: #ffffff;
+    background-color: #dc3545;
+    padding: 16px;
+    border-radius: 30px;
+    p{
+      font-family: "mtavruli";
+    }
 }
 
-.button-register {
-  max-width: 200px;
+.reset-password{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  a{
+    color: #ffffff !important;
+     font-family: "mtavruli";
+  }
+}
+
+.form-button{
+  font-family: "mtavruli";
+}
+// Break Point
+$tablet-width: 767px;
+$mobile-width: 640px;
+
+// Tablet
+@mixin tablet {
+  @media screen and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+// Mobile
+@mixin mobile {
+  @media screen and (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body,
+html {
   width: 100%;
-  outline: none;
-  border: none;
-  background-color: #28a745;
-  color: #ffffff;
-  padding: 6px;
-  border-radius: 22px;
-  cursor: pointer;
+  height: 100%;
+  background-color: #e8e8ea;
 }
 
-#login-box {
-  position: relative;
-  margin: 5% auto;
-  width: 600px;
-  height: 400px;
+
+.form-label{
+  font-family: "rioni-bpg";
+}
+
+.wrap {
+  width: 440px;
+  padding: 2%;
+  margin: 60px auto;
   background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 30px -20px rgba(2, 2, 2, 0.8),
+    0 20px 30px 0px rgba(30, 30, 30, 0.3);
+
+  @include tablet {
+    width: 380px;
+  }
+
+  @include mobile {
+    width: 320px;
+  }
 }
 
-.left {
-  position: absolute;
-  top: 0;
-  left: 0;
+.image__inner{
+  margin-bottom: 32px;
+  h1{
+    font-family: 'rioni-bpg';
+    font-size: 23px;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 30px;
   box-sizing: border-box;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
+  background-color: #0e0e0e;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2b8f5', endColorstr='#fc78b1',GradientType=1 );
+
+  .form-list {
+    position: relative;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin-top: 12px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    @include tablet {
+      height: 50px;
+    }
+    @include mobile {
+      height: 40px;
+    }
+
+    .form-label {
+      display: block;
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      margin-right: 0;
+      padding-left: 26px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 62px;
+      @include tablet {
+        padding-left: 22px;
+        font-size: 13px;
+        line-height: 50px;
+      }
+
+      @include mobile {
+        padding-left: 18px;
+        font-size: 11px;
+        line-height: 39px;
+      }
+    }
+
+    .form-input {
+      z-index: 1;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      -ms-flex-positive: 1;
+      -webkit-flex-grow: 1;
+      flex-grow: 1;
+      height: 58px;
+      padding: 0 20px;
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      border: 0;
+      outline: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background-color: transparent;
+
+      @include tablet {
+        padding: 0 14px;
+        height: 47px;
+        font-size: 14px;
+      }
+
+      @include mobile {
+        padding: 0 10px;
+        height: 36px;
+        font-size: 11px;
+      }
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: inset 0 0 0px 9999px transparent;
+      }
+
+      &:focus,
+      &:-webkit-autofill:focus {
+        -webkit-box-shadow: inset 0 0 0px 9999px transparent,
+          0 0 8px rgba(0, 0, 0, 0);
+      }
+
+      &:focus + .form-background {
+        transition: background-color 0.2s;
+        background-color: rgba(255, 255, 255, 0.35);
+      }
+
+      &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
+
+        @include tablet {
+          font-size: 12px;
+        }
+        @include mobile {
+          font-size: 10px;
+        }
+      }
+      &:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
+
+        @include tablet {
+          font-size: 12px;
+        }
+        @include mobile {
+          font-size: 10px;
+        }
+      }
+      &::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
+
+        @include tablet {
+          font-size: 12px;
+        }
+        @include mobile {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .form-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.18);
+      transition: background-color 0.2s;
+      border-radius: 30px;
+    }
+  }
+
+  .form-button {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    margin: 50px auto 0;
+    padding: 20px 0;
+    font-size: 14px;
+    color: #fff;
+    line-height: 0.8; //20px*0.8=16px
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    transition: background-color 0.2s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: #fe78b5;
+      background-color: rgba(255, 255, 255, 0.8);
+      outline: 0;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    @include tablet {
+      font-size: 16px;
+      padding: 16px 0;
+    }
+    @include mobile {
+      font-size: 13px;
+      padding: 13px 0;
+    }
+  }
 }
 
-h1 {
-  margin: 0 0 20px 0;
-  font-weight: 300;
-  font-size: 28px;
+
+@media(max-width:768px){
+  .feedback{
+    padding: 8px;
+    p{
+      font-size: 10px;
+    }
+}
 }
 
-input[type="text"],
-input[type="password"] {
-  display: block;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 4px;
-  width: 220px;
-  height: 32px;
-  border: none;
-  border-bottom: 1px solid #aaa;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  transition: 0.2s ease;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #16a085;
-  color: #16a085;
-  transition: 0.2s ease;
-}
-
-input[type="submit"] {
-  margin-top: 28px;
-  width: 120px;
-  height: 32px;
-  background: #16a085;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  opacity: 0.8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
-
-input[type="submit"]:active {
-  opacity: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
-
-.or {
-  position: absolute;
-  top: 180px;
-  left: 280px;
-  width: 40px;
-  height: 40px;
-  background: #ddd;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  line-height: 40px;
-  text-align: center;
-}
-
-.right {
-  position: absolute;
-  top: 83px;
-  right: 0;
-  box-sizing: border-box;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 0 2px 2px 0;
-}
-
-button.social-signin {
-  margin-bottom: 20px;
-  width: 220px;
-  height: 36px;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  transition: 0.2s ease;
-  cursor: pointer;
-}
-
-button.social-signin:hover,
-button.social-signin:focus {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease;
-}
-
-button.social-signin:active {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease;
-}
-
-button.social-signin.facebook {
-  background: #32508e;
-}
-
-button.social-signin.twitter {
-  background: #55acee;
-}
-
-button.social-signin.google {
-  background: #dd4b39;
-}
 </style>

@@ -1,17 +1,37 @@
 <template>
-  <div id="login-box">
-    <div class="left">
-      <h1 class="system-reg">პაროლის აღდგენა</h1>
-      <input type="text" name="email" placeholder="E-mail" v-model="Email" />
-      <button class="button-register" @click="resetPassword">აღდგენა</button>
+  <div class="wrap">
+    <div class="form">
+      <div class="image-wrapper">
+        <div class="image__inner">
+          <h1>პაროლის აღდგენა</h1>
+        </div>
+      </div>
+      <div class="form">
+        <div class="form-area">
+          <div class="form-list">
+            <label for="form-email" class="form-label">ფოსტა:</label>
+            <input
+              type="email"
+              required="required"
+              placeholder="შეიყვანეთ ელ.ფოსტა"
+              class="form-input"
+              v-model="Email"
+            />
+            <div class="form-background"></div>
+          </div>
+        </div>
+        <nuxt-link to="/login">
+          <input type="submit" class="form-button" value="პაროლის აღდგენა" @click="resetPassword" />
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
-import  firebase from "firebase/app";
-import "firebase/auth"
+import firebase from "firebase/app";
+import "firebase/auth";
 export default {
   data() {
     return {
@@ -20,174 +40,290 @@ export default {
   },
 
   methods: {
-     resetPassword(){
-    firebase.auth().sendPasswordResetEmail(this.Email)
-    .then(function() {
-      alert("აღდგენის ლინკი წარმატებით გამოიგზავნა")
-    })
-    .catch(function(error) {
-      alert("filed")
-    })
-     }
+    resetPassword() {
+      firebase
+        .auth()
+        .sendPasswordResetEmail(this.Email)
+        .then(function () {
+          alert("აღდგენის ლინკი წარმატებით გამოიგზავნა");
+        })
+        .catch(function (error) {
+          alert("filed");
+        });
+    },
   },
 };
 </script>
 
-<style scoped>
-*:focus {
-  outline: none;
-}
-
-.button-register {
-  max-width: 200px;
-  width: 100%;
-  outline: none;
-  border: none;
-  background-color: #28a745;
+<style lang="scss" scoped>
+.feedback {
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
   color: #ffffff;
-  padding: 6px;
-  border-radius: 22px;
-  cursor: pointer;
+  background-color: #dc3545;
+  padding: 16px;
+  border-radius: 30px;
+  p {
+    font-family: "mtavruli";
+  }
 }
 
+.reset-password {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  a {
+    color: #ffffff !important;
+    font-family: "mtavruli";
+  }
+}
 
+.form-button {
+  font-family: "mtavruli";
+}
+// Break Point
+$tablet-width: 767px;
+$mobile-width: 640px;
 
-#login-box {
-  position: relative;
-  margin: 5% auto;
-  width: 600px;
-  height: 400px;
+// Tablet
+@mixin tablet {
+  @media screen and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+// Mobile
+@mixin mobile {
+  @media screen and (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #e8e8ea;
+}
+
+.form-label {
+  font-family: "rioni-bpg";
+}
+
+.wrap {
+  width: 440px;
+  padding: 2%;
+  margin: 60px auto;
   background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 30px -20px rgba(2, 2, 2, 0.8),
+    0 20px 30px 0px rgba(30, 30, 30, 0.3);
+
+  @include tablet {
+    width: 380px;
+  }
+
+  @include mobile {
+    width: 320px;
+  }
 }
 
-.left {
-  position: absolute;
-  top: 0;
-  left: 0;
+.image__inner {
+  margin-bottom: 32px;
+  h1 {
+    font-family: "rioni-bpg";
+    font-size: 23px;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 30px;
   box-sizing: border-box;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
-}
+  background-color: #0e0e0e;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2b8f5', endColorstr='#fc78b1',GradientType=1 );
 
-h1 {
-  margin: 0 0 20px 0;
-  font-weight: 300;
-  font-size: 28px;
-}
+  .form-list {
+    position: relative;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin-top: 12px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 
-input[type="text"],
-input[type="password"] {
-  display: block;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 4px;
-  width: 220px;
-  height: 32px;
-  border: none;
-  border-bottom: 1px solid #aaa;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  transition: 0.2s ease;
-}
+    &:first-child {
+      margin-top: 0;
+    }
+    @include tablet {
+      height: 50px;
+    }
+    @include mobile {
+      height: 40px;
+    }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #16a085;
-  color: #16a085;
-  transition: 0.2s ease;
-}
+    .form-label {
+      display: block;
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      margin-right: 0;
+      padding-left: 26px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 62px;
+      @include tablet {
+        padding-left: 22px;
+        font-size: 13px;
+        line-height: 50px;
+      }
 
-input[type="submit"] {
-  margin-top: 28px;
-  width: 120px;
-  height: 32px;
-  background: #16a085;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-  cursor: pointer;
-}
+      @include mobile {
+        padding-left: 18px;
+        font-size: 11px;
+        line-height: 39px;
+      }
+    }
 
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  opacity: 0.8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
+    .form-input {
+      z-index: 1;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      -ms-flex-positive: 1;
+      -webkit-flex-grow: 1;
+      flex-grow: 1;
+      height: 58px;
+      padding: 0 20px;
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      border: 0;
+      outline: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background-color: transparent;
 
-input[type="submit"]:active {
-  opacity: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
+      @include tablet {
+        padding: 0 14px;
+        height: 47px;
+        font-size: 14px;
+      }
 
-.or {
-  position: absolute;
-  top: 180px;
-  left: 280px;
-  width: 40px;
-  height: 40px;
-  background: #ddd;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  line-height: 40px;
-  text-align: center;
-}
+      @include mobile {
+        padding: 0 10px;
+        height: 36px;
+        font-size: 11px;
+      }
 
-.right {
-  position: absolute;
-  top: 83px;
-  right: 0;
-  box-sizing: border-box;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 0 2px 2px 0;
-}
+      &:-webkit-autofill {
+        -webkit-box-shadow: inset 0 0 0px 9999px transparent;
+      }
 
-button.social-signin {
-  margin-bottom: 20px;
-  width: 220px;
-  height: 36px;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  transition: 0.2s ease;
-  cursor: pointer;
-}
+      &:focus,
+      &:-webkit-autofill:focus {
+        -webkit-box-shadow: inset 0 0 0px 9999px transparent,
+          0 0 8px rgba(0, 0, 0, 0);
+      }
 
-button.social-signin:hover,
-button.social-signin:focus {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease;
-}
+      &:focus + .form-background {
+        transition: background-color 0.2s;
+        background-color: rgba(255, 255, 255, 0.35);
+      }
 
-button.social-signin:active {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease;
-}
+      &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
 
-button.social-signin.facebook {
-  background: #32508e;
-}
+        @include tablet {
+          font-size: 12px;
+        }
+        @include mobile {
+          font-size: 10px;
+        }
+      }
+      &:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
 
-button.social-signin.twitter {
-  background: #55acee;
-}
+        @include tablet {
+          font-size: 12px;
+        }
+        @include mobile {
+          font-size: 10px;
+        }
+      }
+      &::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
 
-button.social-signin.google {
-  background: #dd4b39;
+        @include tablet {
+          font-size: 12px;
+        }
+        @include mobile {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .form-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.18);
+      transition: background-color 0.2s;
+      border-radius: 30px;
+    }
+  }
+
+  .form-button {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    margin: 50px auto 0;
+    padding: 20px 0;
+    font-size: 14px;
+    color: #fff;
+    line-height: 0.8; //20px*0.8=16px
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    transition: background-color 0.2s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: #fe78b5;
+      background-color: rgba(255, 255, 255, 0.8);
+      outline: 0;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    @include tablet {
+      font-size: 16px;
+      padding: 16px 0;
+    }
+    @include mobile {
+      font-size: 13px;
+      padding: 13px 0;
+    }
+  }
 }
 </style>
